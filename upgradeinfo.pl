@@ -8,7 +8,7 @@ use Irssi 20021204.1123;
 # ======[ Script Header ]===============================================
 
 use vars qw{$VERSION %IRSSI};
-($VERSION) = '$Revision: 1.2 $' =~ / (\d+\.\d+) /;
+($VERSION) = '$Revision: 1.3 $' =~ / (\d+\.\d+) /;
 %IRSSI = (
 	  name        => 'upgradeinfo',
 	  authors     => 'Peder Stray',
@@ -113,6 +113,7 @@ Irssi::statusbar_item_register('upgradeinfo', undef, 'sb_upgradeinfo');
 # --------[ Other setup ]-----------------------------------------------
 
 $load_time = (stat Irssi::get_irssi_binary)[9];
+$file_time = $load_time;
 
 sig_setup_changed;
 
