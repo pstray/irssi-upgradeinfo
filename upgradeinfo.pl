@@ -8,7 +8,7 @@ use Irssi 20021204.1123;
 # ======[ Script Header ]===============================================
 
 use vars qw{$VERSION %IRSSI};
-($VERSION) = '$Revision: 1.1 $' =~ / (\d+\.\d+) /;
+($VERSION) = '$Revision: 1.2 $' =~ / (\d+\.\d+) /;
 %IRSSI = (
 	  name        => 'upgradeinfo',
 	  authors     => 'Peder Stray',
@@ -21,9 +21,8 @@ use vars qw{$VERSION %IRSSI};
 # ======[ Variables ]===================================================
 
 my($load_time) = 0;		# modification time of binary at load
-my($file_time) = 0;		# modifikation time of binary file;
+my($file_time) = 0;		# modification time of binary file
 my($timer) = 0;			# ID of current timer
-my($count) = 0;
 
 # ======[ Commands ]====================================================
 
@@ -68,14 +67,14 @@ sub sb_upgradeinfo {
     $time = $file_time - $load_time;
 
     if ($time) {
-	$time = sprintf("%d:%02d:%02d:%02d",
+	$time = sprintf("%dd%02dh%02dm%02ds",
 			$time/60/60/24,
 			$time/60/60%24,
 			$time/60%60,
 			$time%60
 		       );
-	$time =~ s/^(0+:)+//;
-	$format = "{sb %r$time%n(%g$count%n)}";
+	$time =~ s/^(0+\D)+//;
+	$format = "{sb %r$time%n}";
     }
 
     $item->default_handler($get_size_only, $format, undef, 1);
@@ -86,11 +85,7 @@ sub sb_upgradeinfo {
 # --------[ ui_check ]--------------------------------------------------
 
 sub ui_check {
-
     $file_time = (stat Irssi::get_irssi_binary)[9];
-    $file_time = (stat "/hom/peder/test")[9];
-
-    $count++;
 
     Irssi::statusbar_items_redraw('upgradeinfo');
 }
@@ -117,8 +112,7 @@ Irssi::statusbar_item_register('upgradeinfo', undef, 'sb_upgradeinfo');
 
 # --------[ Other setup ]-----------------------------------------------
 
-#$load_time = (stat Irssi::get_irssi_binary)[9];
-$load_time ||= (stat "/hom/peder/test")[9];
+$load_time = (stat Irssi::get_irssi_binary)[9];
 
 sig_setup_changed;
 
