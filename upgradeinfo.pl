@@ -8,7 +8,7 @@ use Irssi 20021204.1123;
 # ======[ Script Header ]===============================================
 
 use vars qw{$VERSION %IRSSI};
-($VERSION) = '$Revision: 1.3 $' =~ / (\d+\.\d+) /;
+($VERSION) = '$Revision: 1.4 $' =~ / (\d+\.\d+) /;
 %IRSSI = (
 	  name        => 'upgradeinfo',
 	  authors     => 'Peder Stray',
@@ -16,6 +16,7 @@ use vars qw{$VERSION %IRSSI};
 	  url         => 'http://ninja.no/irssi/upgradeinfo.pl',
 	  license     => 'GPL',
 	  description => 'Statusbaritem notifying you about updated binary',
+	  sbitems     => 'upgradeinfo',
 	 );
 
 # ======[ Variables ]===================================================
