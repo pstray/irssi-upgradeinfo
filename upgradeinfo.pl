@@ -1,14 +1,15 @@
 #
-# Copyright (C) 2002 by Peder Stray <peder@ninja.no>
+# Copyright (C) 2002-2003 by Peder Stray <peder@ninja.no>
 #
 
 use strict;
 use Irssi 20021204.1123;
+use Irssi::TextUI;
 
 # ======[ Script Header ]===============================================
 
 use vars qw{$VERSION %IRSSI};
-($VERSION) = '$Revision: 1.6 $' =~ / (\d+\.\d+) /;
+($VERSION) = '$Revision: 1.7 $' =~ / (\d+\.\d+) /;
 %IRSSI = (
 	  name        => 'upgradeinfo',
 	  authors     => 'Peder Stray',
