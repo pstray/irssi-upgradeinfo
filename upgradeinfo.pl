@@ -8,7 +8,7 @@ use Irssi 20021204.1123;
 # ======[ Script Header ]===============================================
 
 use vars qw{$VERSION %IRSSI};
-($VERSION) = '$Revision: 1.4 $' =~ / (\d+\.\d+) /;
+($VERSION) = '$Revision: 1.6 $' =~ / (\d+\.\d+) /;
 %IRSSI = (
 	  name        => 'upgradeinfo',
 	  authors     => 'Peder Stray',
@@ -64,17 +64,18 @@ sub sb_upgradeinfo {
     my($item, $get_size_only) = @_;
     my $format = "";
     my($time);
+    my($timefmt) = Irssi::settings_get_str('upgrade_time_format');
 
     $time = $file_time - $load_time;
 
     if ($time) {
-	$time = sprintf("%dd%02dh%02dm%02ds",
+	$time = sprintf($timefmt,
 			$time/60/60/24,
 			$time/60/60%24,
 			$time/60%60,
 			$time%60
 		       );
-	$time =~ s/^(0+\D)+//;
+	$time =~ s/^(0+\D+)+//;
 	$format = "{sb %r$time%n}";
     }
 
@@ -102,6 +103,7 @@ Irssi::command_bind('upgradeinfo', 'cmd_upgradeinfo');
 # --------[ Register settings ]-----------------------------------------
 
 Irssi::settings_add_int('upgrade', 'upgrade_check_interval', 300);
+Irssi::settings_add_str('upgrade', 'upgrade_time_format', '%d+%02d:%02d');
 
 # --------[ Register signals ]------------------------------------------
 
