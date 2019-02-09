@@ -14,7 +14,7 @@ use vars qw{$VERSION %IRSSI};
 	  contact     => 'peder@ninja.no',
 	  url         => 'http://ninja.no/irssi/upgradeinfo.pl',
 	  license     => 'GPL',
-	  description => 'Statusbaritem notifying you about updated binary',
+	  description => 'Statusbar item notifying you about updated binary',
 	  sbitems     => 'upgradeinfo',
 	 );
 
